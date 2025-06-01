@@ -1,0 +1,68 @@
+// Source code is decompiled from a .class file using FernFlower decompiler.
+package queue;
+
+import java.util.Scanner;
+
+public class appQueue {
+   public appQueue() {
+   }
+
+   public static void main(String[] args) {
+      simpul s = new simpul("Sepatu", 200000);
+      queue q = new queue();
+      Scanner sc = new Scanner(System.in);
+      int pilih = false;
+      int pemasukan = 0;
+
+      int pilih;
+      do {
+         System.out.println("\nAntrian Pembelian");
+         System.out.println("1.Enqueue\n2.Dequeue");
+         System.out.println("3.View\n4.Exit");
+         System.out.print("Pilih = ");
+         pilih = sc.nextInt();
+         switch (pilih) {
+            case 1:
+               System.out.println("\nDaftar Barang");
+               System.out.println("1.Sepatu\n2.Tas");
+               System.out.println("3.Sandal");
+               System.out.print("Pilih = ");
+               int pilih2 = sc.nextInt();
+               switch (pilih2) {
+                  case 1:
+                     s = new simpul("Sepatu", 200000);
+                     break;
+                  case 2:
+                     s = new simpul("Tas", 150000);
+                     break;
+                  case 3:
+                     s = new simpul("Sandal", 100000);
+               }
+
+               q.enqueue(s);
+               break;
+            case 2:
+               simpul t = q.dequeue();
+               if (t != null) {
+                  System.out.println("Check out " + t.barang + " [" + t.harga + "] ");
+                  pemasukan += t.harga;
+                  System.out.println("Pemasukan: " + pemasukan);
+               }
+               break;
+            case 3:
+               q.view();
+               int total = 0;
+
+               for(simpul temp = q.front; temp != null; temp = temp.prev) {
+                  total += temp.harga;
+               }
+
+               System.out.println("Total Transaksi: " + total);
+               break;
+            case 4:
+               System.out.println("Thanks..");
+         }
+      } while(pilih != 4);
+
+   }
+}
